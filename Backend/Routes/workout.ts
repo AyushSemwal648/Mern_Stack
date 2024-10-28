@@ -1,32 +1,17 @@
 import express from "express";
 import { WorkoutModel } from "../Models/workoutModel";
+import { createWorkout, getWorkout, getWorkouts } from "../Controllers/workoutController";
 
 const router = express.Router()
 
 //Get all workout
-router.get("/", (req, res) => {
-res.json({mssg: "Get all Workouts"})
-})
+router.get("/", getWorkouts)
 
 //get a single workout
-router.get("/:id", ( req, res) => {
-    res.json({mssg: "get a single workout"})
-})
+router.get("/:id", getWorkout)
 
 //Post a new workout
-router.post("/", async (req, res) => {
-    const {title, reps, load} = req.body
-
-    try{
-        const workout = await WorkoutModel.create({title, reps, load})
-        res.status(200).json({workout, status: "ok"})
-
-    }
-    catch (error: any){
-        res.status(400).json({error: error.message})
-    }
-
-})
+router.post("/", createWorkout)
 
 //Delete a workout
 router.delete("/:id", (req, res) => {

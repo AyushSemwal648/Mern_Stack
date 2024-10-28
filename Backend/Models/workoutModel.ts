@@ -1,5 +1,6 @@
 import mongoose, { model } from "mongoose";
 
+
 const Schema = mongoose.Schema
 
 const workoutSchema = new Schema({
